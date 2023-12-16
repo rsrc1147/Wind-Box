@@ -120,7 +120,7 @@ function getData(type) {
         }).then(response => response.json()).then(d => {
             weatherData.push(...makePoints(d.SiteRep.DV.Location.filter(function(value, index, Arr) {
                 // Weather Forecasts have a lot of points so we need to filter them down a little. You can change the number of points you want by changing 5 to something else
-                return index % 5 == 0;
+                return (type == "observation" ? true : index % 5 == 0);
             }), type));
             return resolve()
         })
